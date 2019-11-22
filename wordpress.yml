@@ -41,8 +41,11 @@
      state: enabled
      immediate: yes
 
+  - name: MySQL | set root password
+    command: mysqladmin password abc
+
   - name: Set SQL
-    command: echo "{{ item }}" | mysql -uroot -p"abc"
+    command: echo "{{ item }}" | mysql -u root -p "abc"
     loop:
      - "DELETE FROM mysql.user WHERE User='';"
      - "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost','127.0.0.1', '::1');"
